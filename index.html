@@ -1,0 +1,212 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulacija-DOM-elementima</title>
+    <script src="https://kit.fontawesome.com/f411c85807.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        #login-container {
+            width: 90vw;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        form label,
+        form input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form input {
+            padding: 8px;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form div {
+            margin: 16px 0px;
+        }
+
+        #kvacica1 {
+            display: none;
+            color: green;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+        }
+
+        #iks1 {
+            display: none;
+            color: red;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+        }
+
+        #kvacica2 {
+            display: none;
+            color: green;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+        }
+
+        #iks2 {
+            display: none;
+            color: red;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+        }
+
+        #tekstIme {
+            display: none;
+        }
+
+        #tekstIme2 {
+            display: none;
+        }
+
+        #tekstSifra {
+            display: none;
+        }
+
+        #tekstSifra2 {
+            display: none;
+        }
+
+        #uspeh {
+            display: none;
+        }
+
+        .ime {
+            position: relative;
+        }
+
+        .lozinka {
+            position: relative;
+        }
+    </style>
+</head>
+
+
+    <div id="login-container">
+        <form id="log-in">
+            <div class="ime">
+                <label id="labelo" for="username">Username:</label>
+                <input id="username" class="unosImena icon-rtl" type="text">
+                <i id="kvacica1" class="fa-solid fa-check"></i>
+                <i id="iks1" class="fa-solid fa-xmark"></i>
+            </div>
+
+            <div class="lozinka">
+                <label for="password">Password:</label>
+                <input id="password" type="password">
+                <i id="kvacica2" class="fa-solid fa-check kvacica2"></i>
+                <i id="iks2" class="fa-solid fa-xmark iks2"></i>
+            </div>
+
+            <input type="submit" value="Prijavi se">
+
+            <p id="tekstIme">Please, enter valid username</p>
+            <p id="tekstIme2">Please, enter username</p>
+            <p id="tekstSifra">Please, enter valid password</p>
+            <p id="tekstSifra2">Please, enter password</p>
+            <p id="uspeh"><em>Successful login!</em></p>
+        </form>
+    </div>
+
+    <script>
+        let prijava = document.getElementById('log-in');
+        prijava.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var korisnickoIme = document.getElementById('username');
+            var korisnickaSifra = document.getElementById('password');
+            var unosImena = document.getElementsByClassName('unosImena');
+            
+            if (korisnickoIme.value !== 'new_user') {
+                let label = document.getElementById('username');
+                label.style.border = '2px solid red';
+                label.style.borderRadius = '5px'
+                let iks1 = document.getElementById('iks1');
+                iks1.style.display = 'block';
+                let kvacica1 = document.getElementById('kvacica1');
+                kvacica1.style.display = 'none';
+            } else {
+                let label = document.getElementById('username');
+                label.style.border = '2px solid green';
+                label.style.borderRadius = '5px'
+                let iks1 = document.getElementById('iks1');
+                iks1.style.display = 'none';
+                let kvacica1 = document.getElementById('kvacica1');
+                kvacica1.style.display = 'block';
+            };
+            if (korisnickaSifra.value !== '123456789') {
+                let sifra = document.getElementById('password');
+                sifra.style.border = '2px solid red';
+                sifra.style.borderRadius = '5px'
+                let iks2 = document.getElementById('iks2');
+                iks2.style.display = 'block';
+                let kvacica2 = document.getElementById('kvacica2');
+                kvacica2.style.display = 'none';
+            } else {
+                let sifra = document.getElementById('password');
+                sifra.style.border = '2px solid green';
+                sifra.style.borderRadius = '5px'
+                let iks2 = document.getElementById('iks2');
+                iks2.style.display = 'none';
+                let kvacica2 = document.getElementById('kvacica2');
+                kvacica2.style.display = 'block';
+            };
+            if (korisnickoIme.value !== 'new_user' & korisnickoIme.value !== '') {
+                let tekstIme1 = document.getElementById('tekstIme');
+                tekstIme1.style.display = 'block';
+            } else {
+                let tekstIme1 = document.getElementById('tekstIme');
+                tekstIme1.style.display = 'none';
+            }
+            if (korisnickaSifra.value !== '123456789' & korisnickaSifra.value !== '') {
+                let tekstSifra1 = document.getElementById('tekstSifra');
+                tekstSifra1.style.display = 'block';
+            } else {
+                let tekstSifra1 = document.getElementById('tekstSifra');
+                tekstSifra1.style.display = 'none';
+            }
+            if (korisnickoIme.value == 'new_user' & korisnickaSifra.value == '123456789') {
+                let uspeh1 = document.getElementById('uspeh');
+                uspeh1.style.display = 'block';
+            } else {
+                let uspeh1 = document.getElementById('uspeh');
+                uspeh1.style.display = 'none';
+            }
+            if (korisnickoIme.value == '') {
+                let tekstIme2 = document.getElementById('tekstIme2');
+                tekstIme2.style.display = 'block'
+            } else {
+                let tekstIme2 = document.getElementById('tekstIme2');
+                tekstIme2.style.display = 'none'
+            }
+            if (korisnickaSifra.value == '') {
+                let tekstSifra2 = document.getElementById('tekstSifra2')
+                tekstSifra2.style.display = 'block';
+            } else {
+                let tekstSifra2 = document.getElementById('tekstSifra2')
+                tekstSifra2.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
+</body>
+</html>
